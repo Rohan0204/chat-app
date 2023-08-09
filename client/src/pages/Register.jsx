@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import './Register.css'
+import { Link } from 'react-router-dom'
 
 const Register = () => {
 
@@ -49,11 +50,13 @@ const Register = () => {
         <div className='container'>
             <h1>Hey Buddy ! Let's register</h1>
             <form className='form' onSubmit={RegisterUser}>
-                <input placeholder='Username' name='username' value={data.username} onChange={handleUser} />
-                <input placeholder='Password' name='password' value={data.password} onChange={handlePass} />
-                <input placeholder='Email' name='email' value={data.email} onChange={handleEmail} />
+                <input type="text" placeholder='Username' name='username' value={data.username} onChange={handleUser} />
+                <input type="password" placeholder='Password' name='password' value={data.password} onChange={handlePass} />
+                <input type="email" placeholder='Email' name='email' value={data.email} onChange={handleEmail} />
                 <button className='register-btn' onClick={RegisterUser}>Register</button>
-                <h1>Hi, {data.username} {data.email}</h1>
+                <h2>Hi, {data.username}</h2>
+
+                <span>Already have an account? <Link to={"/login"}>Login</Link> </span>
             </form>
         </div>
     )
