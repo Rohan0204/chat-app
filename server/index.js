@@ -30,6 +30,24 @@ app.get('/', (req, res) => {
     res.send("Get request called")
 });
 
+app.post('/user', (req, res) => {
+    console.log(req.body);
+    let data = req.body;
+    res.send(data);
+
+    let user = new User({
+        username: req.body.username,
+        password: req.body.password,
+        email: req.body.email
+    })
+
+    user.save();
+
+
+
+});
+
+
 
 
 const port = process.env.PORT || 3000;
