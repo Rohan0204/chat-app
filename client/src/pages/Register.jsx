@@ -34,7 +34,7 @@ const Register = () => {
 
 
         if (handleValidation()) {
-            const value = await axios.post('http://localhost:3000/api/auth/user/register', {
+            const value = await axios.post("http://localhost:3000/api/auth/user/register", {
                 username: data.username,
                 password: data.password,
                 email: data.email

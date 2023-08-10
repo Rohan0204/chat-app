@@ -14,3 +14,10 @@ exports.registerUser = (req, res, next) => {
     user.save();
     next();
 }
+
+exports.loginUser = (req, res, next) => {
+    let user = req.body;
+    res.send(user);
+    console.log(user);
+    next();
+}
