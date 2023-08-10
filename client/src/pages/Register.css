@@ -17,10 +17,11 @@
 
 input {
     margin-top: 1rem;
-    border: none;
     border-radius: 0.4rem;
     padding: 0.6rem;
     width: 20vw;
+    border-width: 0.2rem;
+
 }
 
 .register-btn {
