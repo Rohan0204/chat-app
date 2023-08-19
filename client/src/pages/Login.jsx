@@ -1,9 +1,12 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
+
+    const navigate = useNavigate();
     const [data, setData] = useState({
         email: '',
         password: ''
@@ -38,14 +41,22 @@ const Login = () => {
         //if exist route to the chat screen
 
         if (validation()) {
-            const value = await axios.get('http://localhost:3000/api/auth/user/login', {
-                email: data.email,
-                password: data.password
-            })
-                .then(() => toast.success("Login Successfully!"))
-                .catch(err => console.log(err))
+            try {
+                const { email, password } = data;
+                const value = await axios.post('http://localhost:3000/api/auth/user/login', {
+                    email,
+                    password
+                })
 
-            console.log(value)
+                if (value.data.status === false) {
+                    toast.error(value.data.message, toastOptions)
+                }
+                navigate('/chat');
+
+
+            } catch (err) {
+                console.log(err);
+            }
         }
 
     }
@@ -74,10 +85,11 @@ const Login = () => {
 
                     <input type="email" placeholder='Email' name='email' value={data.email} onChange={handleEmail} />
                     <input type="password" placeholder='Password' name='password' value={data.password} onChange={handlePass} />
-                    <button className='register-btn' onClick={LoginUser}>Login</button>
+                    <button type='submit' className='register-btn' onClick={LoginUser}>Login</button>
                     <h2>Hi, {data.email}</h2>
 
                 </form>
+                <span>Don't have an account? <Link to={"/register"}>Register</Link> </span>
             </div>
             <ToastContainer />
         </>

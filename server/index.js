@@ -12,6 +12,7 @@ app.use(cors());
 app.use('/api/auth/user', userRouter)
 
 
+
 //MONGOOSE DB CONNECTION 
 mongoose.connect('mongodb://localhost:27017/chat-app')
     .then(() => console.log("Connected to Database ... "))

@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import './Register.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
 
+    const navigate = useNavigate();
     const [data, setData] = useState({
         username: '',
         password: '',
@@ -39,10 +40,14 @@ const Register = () => {
                 password: data.password,
                 email: data.email
             })
-                .then(() => toast.success("Registered Successfully!"))
-                .catch(err => console.log(err))
+            if (value.data.status === false) {
+                toast.error(value.data.message, toastOptions);
+            }
 
-            console.log(value)
+            toast.success("Registered Successfully", toastOptions);
+            navigate('/login');
+
+            console.log(value.data)
         }
 
     }
