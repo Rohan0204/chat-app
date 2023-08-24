@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './Home.css'
 import { useNavigate } from 'react-router-dom'
 
 const Home = () => {
+
     const navigate = useNavigate();
+
+    const isLocalStorage = () => {
+        if (localStorage.getItem("id") !== null) {
+            return true;
+        }
+        else {
+            return false
+        }
+    }
+
+    useEffect(() => {
+        if (isLocalStorage()) {
+            navigate('/chat')
+        }
+    }, [])
 
     function handleLogin() {
         navigate('/login');

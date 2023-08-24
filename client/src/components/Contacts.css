@@ -1,0 +1,28 @@
+.contacts-container {
+    display: flex;
+    margin: 0.2rem;
+
+}
+
+.contact-detail {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1.5rem;
+    width: 100vw;
+    border-radius: 1.5rem;
+}
+
+.contact-detail:hover {
+    background-color: #79155B;
+}
+
+.contact-name {
+    display: flex;
+    font-size: 18px;
+    margin-top: 0px;
+}
+
+.contact-icon {
+    display: flex;
+}

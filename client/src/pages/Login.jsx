@@ -1,10 +1,20 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { HashLoader } from 'react-spinners'
 import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
+
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000)
+    }, [])
 
     const navigate = useNavigate();
     const [data, setData] = useState({
@@ -51,6 +61,13 @@ const Login = () => {
                 if (value.data.status === false) {
                     toast.error(value.data.message, toastOptions)
                 }
+
+                //setting Item to local storage 
+                console.log(value.data);
+                localStorage.setItem('username', value.data.username);
+                localStorage.setItem('id', value.data.id);
+
+                //navigating to chat page since we are authenticated with the platform 
                 navigate('/chat');
 
 
@@ -78,18 +95,23 @@ const Login = () => {
 
 
     return (
+
+
+
         <>
             <div className='container'>
-                <h1>LOGIN</h1>
-                <form className='form' onSubmit={LoginUser}>
+                {loading ? <HashLoader color="#36d7b7" /> : (<><h1>LOGIN</h1>
 
-                    <input type="email" placeholder='Email' name='email' value={data.email} onChange={handleEmail} />
-                    <input type="password" placeholder='Password' name='password' value={data.password} onChange={handlePass} />
-                    <button type='submit' className='register-btn' onClick={LoginUser}>Login</button>
-                    <h2>Hi, {data.email}</h2>
+                    <form className='form' onSubmit={LoginUser}>
 
-                </form>
-                <span>Don't have an account? <Link to={"/register"}>Register</Link> </span>
+                        <input type="email" placeholder='Email' name='email' value={data.email} onChange={handleEmail} />
+                        <input type="password" placeholder='Password' name='password' value={data.password} onChange={handlePass} />
+                        <button type='submit' className='register-btn' onClick={LoginUser}>Login</button>
+                        <h2>Hi, {data.email}</h2>
+
+                    </form>
+                    <span>Don't have an account? <Link to={"/register"}>Register</Link> </span>
+                </>)}
             </div>
             <ToastContainer />
         </>

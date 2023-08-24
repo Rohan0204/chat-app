@@ -1,0 +1,39 @@
+.chat-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #C23373;
+    height: 100vh;
+    width: 100vw;
+    color: white;
+    overflow: hidden;
+    /* Hide scrollbars */
+}
+
+.chat-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .25rem;
+    height: 8vh;
+    width: 100vw;
+    background-color: #79155B;
+    color: white
+}
+
+.chat-section {
+    display: flex;
+    flex-direction: row;
+}
+
+.contact-section {
+    width: 25vw;
+    height: 92vh;
+    background-color: #F6635C;
+}
+
+.chat-area {
+    width: 75vw;
+
+}

@@ -14,7 +14,7 @@ app.use('/api/auth/user', userRouter)
 
 
 //MONGOOSE DB CONNECTION 
-mongoose.connect('mongodb://localhost:27017/chat-app')
+mongoose.connect(process.env.MONGO_URL)
     .then(() => console.log("Connected to Database ... "))
     .catch(err => console.log(err))
 
